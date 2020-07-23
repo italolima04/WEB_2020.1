@@ -20,12 +20,10 @@ ReactDOM.render(<ComponentePai />, root);
  */
 
 /* Questão 4
-
-*/
-
 import ComponentePai from "./components/Questao4/ComponentePai";
 const root = document.getElementById("root");
 ReactDOM.render(<ComponentePai />, root);
+*/
 
 /* Questao5 
 
