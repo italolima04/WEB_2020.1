@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 /* Questão 1 
 import HelloWorld from "./components/Questao1/HelloWorld";
 const root = document.getElementById("root");
@@ -26,5 +28,7 @@ ReactDOM.render(<ComponentePai />, root);
 */
 
 /* Questao5 
-
+import ComponentePai from "./components/Questao5/ComponentePai";
+const root = document.getElementById("root");
+ReactDOM.render(<ComponentePai />, root);
 */
