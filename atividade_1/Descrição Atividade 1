@@ -1,0 +1,20 @@
+**Descrição da Atividade Remota 1** 
+
+Questão 1) Crie um componente que exiba na tela o seu nome, curso e cidade de origem, usado apenas
+funções.
+
+Questão 2) Crie um componente que exiba na tela o seu nome, curso e cidade de origem, usando classes
+(React.Component).
+
+Questão 3) Para o componente da Questão 1, crie um componente pai que passe, via props, todos os
+parâmetros pedidos (nome, curso e cidade de origem). No componente filho, exiba essas informações,
+fazendo uso do props.
+
+Questão 4) (Dica: leia a Questão 5 antes, caso seja uma programador mais avançado)Para o componente da
+Questão 2, crie um componente pai que passe, via props, todos os parâmetros pedidos (nome, curso e cidade
+de origem). No componente filho, exiba essas informações, fazendo uso do props.
+
+Questão 5) Instale o Bootstrap no seu projeto, via NPM. Modifique o componente da Questão 4 para que
+ele use algo do Bootstrap (Sugestão: https://getbootstrap.com/docs/4.0/components/card/ ).
+Não há necessidade criar uma nova pasta para essa questão, você já pode fazer a Questão 4 inicialmente com
+essa modificação.
