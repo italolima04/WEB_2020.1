@@ -1,0 +1,21 @@
+.hero-container,
+.enemy-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.hero-container img,
+.enemy-container img {
+    border-radius: 20px;
+}
+
+.arena-container {
+    display: flex;
+    flex-direction: row;
+    margin: 40px;
+    justify-content: space-around;
+}
