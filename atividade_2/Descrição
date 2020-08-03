@@ -1,0 +1,32 @@
+*** Descrição da Atividade ***
+
+Questão 1) Em mesmo arquivo, crie os seguintes componentes, usando funções:
+“Hero”, o qual imprimirá a propriedade “name”, recebida via “props”. Além disso, mostre uma
+imagem de sua escolha, usando a tag <img>”.
+“Enemy”, a mesma coisa de Hero, com um “name” e uma imagem.
+“Arena”, o componente que será exportado pelo arquivo. Irá renderizar os componentes “Hero” e
+“Enemy”
+Ex. (render de Arena):
+<div>
+<Hero name = “Baki” img = “../baki.png”/>
+<Enemy name = “Yujiro” img = “../ogre.png”/>
+</div>
+
+Questão 2) Modifique a Questão 1 para que também seja passado o caminho da imagem via props. Tente
+criar um arquivo .js de constantes strings com esses caminhos e o importe para “Arena”. (Se quiser fazer a
+Questão 1 já dessa forma, também pode).
+
+Questão 3) Usando o props.children, Crie um componente “World” que pelo menos 3 Arenas e seu
+interior. Ex.:
+<World>
+<Arena />
+<Arena />
+<Arena />
+</World>
+
+Questão 4) Usando a técnica do slide 36 da aula 01, Modifique o componente Arena para que ele receba
+uma props chamada “arena”. Seus filhos, Hero e Enemy deverão então exibir o nome a propriedade
+“arena”. Ex.:
+<Arena arena = “Tokio Dome – Underground Arena” />
+
+Questão 5) Use o Bootstrap (ou semelhante), de alguma forma.
