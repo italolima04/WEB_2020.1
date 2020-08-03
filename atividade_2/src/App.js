@@ -1,28 +1,21 @@
 import React from "react";
 
-/* Questão 1 
+/* Questão 1
 import Questao1 from "./components/Questao1";
 
 function App() {
-  return (
-    <div>
-      <Questao1 />
-    </div>
-  );
+  return <Questao1 />;
 }
 
 export default App;
+
 */
 
 /* Questão 2
 import Questao2 from "./components/Questao2";
 
 function App() {
-  return (
-    <div>
-      <Questao2 />
-    </div>
-  );
+  return <Questao2 />;
 }
 
 export default App;
@@ -30,47 +23,27 @@ export default App;
 */
 
 /* Questão 3
-import World from "./components/Questao3/World";
-import Arena from "./components/Questao1";
+import Questao3 from "./components/Questao3";
 
 function App() {
-  return (
-    <div>
-      <World>
-        <Arena />
-        <Arena />
-        <Arena />
-      </World>
-    </div>
-  );
+  return <Questao3 />;
 }
 
 export default App;
+
 */
 
 /* Questão 4
-
-import Cristiano from "./assets/Cristiano.jpg";
-import Zuckeberg from "./assets/Zuckeberg.jpg";
-
-import { Hero, Enemy, Arena } from "./components/Questao4/index";
+import Questao4 from "./components/Questao4";
 
 function App() {
-  return (
-    <div>
-      <Arena arena="Winners">
-        <Hero name="Cristiano Ronaldo" src={Cristiano} />
-        <Enemy name="Mark Zuckeberg" src={Zuckeberg} />
-      </Arena>
-    </div>
-  );
+  return <Questao4 />;
 }
 
 export default App;
-
 */
 
-// Questão 5
+/* Questão 5
 
 import LIP from "./assets/LIP.jpg";
 import ED from "./assets/ED.png";
@@ -98,3 +71,5 @@ function App() {
 }
 
 export default App;
+
+*/
