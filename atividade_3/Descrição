@@ -1,0 +1,17 @@
+Note que o material trata de um projeto CRUD simples, onde inicialmente usaremos Rotas (Routes)
+como menu de navegação, Bootstrap para deixar tudo lindo e Json-Server como base de dados
+quebra-galho.
+
+A tarefa de vocês, é criar EXATAMENTE a mesma coisa, só que para a entidade Disciplina. Uma
+Disciplina tem as seguintes informações:
+nome
+curso
+capacidade (quantidade máxima de alunos)
+
+Sendo assim, vocês devem implementar:
+Um menu principal, com os links Home, Inserir e Listar (ainda não funcionando, apenas
+exibe uma página em branco).
+Um formulário onde o usuário entra com os dados da disciplina (listados acima) e os insere
+dentro de uma base Json-Server.
+A implementação de vocês deve usar Routes para os links e Bootstrap, tal qual os vídeos.
+O trabalho só estará completo se eu puder inserir uma disciplina no Json-Server.
