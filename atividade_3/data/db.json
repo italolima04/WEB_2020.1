@@ -1,34 +1,28 @@
 {
   "disciplinas": [
     {
-      "id": 1,
-      "nome": "Desenvolvimento de Software para Web",
-      "curso": "Engenharia de Software",
-      "capacidade": "35"
-    },
-    {
-      "id": 2,
       "nome": "Probabilidade e Estatística",
       "curso": "Engenharia de Software",
-      "capacidade": "40"
-    },
-    {
-      "id": 3,
-      "nome": "Aprendizado de Máquina",
-      "curso": "Ciência da Computação",
-      "capacidade": "35"
-    },
-    {
-      "id": 4,
-      "nome": "Projeto e Análise de Algoritmos",
-      "curso": "Engenharia de Software",
-      "capacidade": "30"
+      "capacidade": "35",
+      "id": 1
     },
     {
       "nome": "Matemática Discreta",
       "curso": "Engenharia de Software",
-      "capacidade": "50",
-      "id": 5
+      "capacidade": "55",
+      "id": 2
+    },
+    {
+      "nome": "Desenvolvimento de Software para Web",
+      "curso": "Engenharia de Software",
+      "capacidade": "35",
+      "id": 3
+    },
+    {
+      "nome": "Aprendizado de Máquina",
+      "curso": "Ciência da Computação",
+      "capacidade": "45",
+      "id": 4
     }
   ]
 }
