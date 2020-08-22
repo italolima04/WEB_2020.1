@@ -13,10 +13,13 @@ router.put("/update/:id", (request, response, next) => {
     const disciplina = disciplinaService.update(request.params.id, request.body);
     return response.json(disciplina);
 });
-router.delete("delete/:id", (request, response, next) => {
-    const disciplina = disciplinaService.delete(request.params.id);
-    if (disciplina) return response.json({ sucess: true });
-    else return response.json({ sucess: false });
+router.delete("/delete/:id", (request, response, next) => {
+    const ok = disciplinaService.delete(request.params.id);
+    if (ok) {
+        return response.json({ sucess: true });
+    } else {
+        return response.json({ sucess: false });
+    }
 });
 router.get("/retrieve/:id", (request, response, next) => {
     const disciplina = disciplinaService.retrieve(request.params.id);
