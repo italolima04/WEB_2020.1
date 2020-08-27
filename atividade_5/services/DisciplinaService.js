@@ -10,7 +10,7 @@ let disciplinas = [{
         _id: 1,
         nome: "Probabilidade e Estatística",
         curso: "Ciência da Computação",
-        capacidade: 45,
+        capacidade: 50,
     },
     {
         _id: 2,
