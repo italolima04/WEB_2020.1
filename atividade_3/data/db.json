@@ -23,6 +23,18 @@
       "curso": "Ciência da Computação",
       "capacidade": "45",
       "id": 4
+    },
+    {
+      "nome": "Projeto e Análise de Algoritmos",
+      "curso": "Engenharia de Software",
+      "capacidade": "40",
+      "id": 5
+    },
+    {
+      "nome": "PAA",
+      "curso": "Engenharia de Software",
+      "capacidade": "50",
+      "id": 6
     }
   ]
 }

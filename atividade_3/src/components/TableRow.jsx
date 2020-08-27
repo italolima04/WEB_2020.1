@@ -5,10 +5,10 @@ import axios from "axios";
 export default function TableRow(props) {
   function apagar() {
     axios
-      .delete(`http://localhost:3001/disciplinas/${props.id}`)
+      .delete(`http://localhost:3002/disciplinas/delete/${props._id}`)
       .then(() => {
-        console.log(props.id);
-        props.apagarElementoPorID(props.id);
+        console.log(props._id);
+        props.apagarElementoPorID(props._id);
         alert("Disciplina Apagada com Sucesso!");
         window.location.reload();
       })
@@ -20,13 +20,13 @@ export default function TableRow(props) {
   }
   return (
     <tr>
-      <td>{props.id}</td>
+      <td>{props._id}</td>
       <td>{props.nome}</td>
       <td>{props.curso}</td>
       <td>{props.capacidade}</td>
       <td style={{ textAlign: "center" }}>
         <Link
-          to={`/edit/${props.id}`}
+          to={`/edit/${props._id}`}
           className="btn btn-primary"
           style={{
             backgroundColor: "#1E90FF",

@@ -6,11 +6,6 @@ export default function Edit() {
   const [nome, setNome] = useState("");
   const [curso, setCurso] = useState("");
   const [capacidade, setCapacidade] = useState("");
-  const [disciplina, setDisciplina] = useState({
-    nome: "",
-    curso: "",
-    capacidade: "",
-  });
 
   const { id } = useParams();
   const history = useHistory();
@@ -18,14 +13,11 @@ export default function Edit() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/disciplinas/${id}`)
+      .get(`http://localhost:3002/disciplinas/retrieve/${id}`)
       .then((response) => {
-        console.log(id);
-        setDisciplina({
-          nome: response.data.nome,
-          curso: response.data.curso,
-          capacidade: response.data.capacidade,
-        });
+        setNome(response.data.nome);
+        setCurso(response.data.curso);
+        setCapacidade(response.data.capacidade);
       })
       .catch((error) => {
         alert("Algo Inesperado Aconteceu :/ ");
@@ -43,7 +35,10 @@ export default function Edit() {
     };
 
     axios
-      .put(`http://localhost:3001/disciplinas/${id}`, disciplinaAtualizada)
+      .put(
+        `http://localhost:3002/disciplinas/update/${id}`,
+        disciplinaAtualizada
+      )
       .then(() => {
         history.push("/list");
       })

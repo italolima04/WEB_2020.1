@@ -9,7 +9,7 @@ export default function List() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/disciplinas")
+      .get("http://localhost:3002/disciplinas/list")
       .then((response) => {
         setDisciplinas(response.data);
       })
@@ -21,7 +21,7 @@ export default function List() {
   function apagarElementoPorID(id) {
     let disciplinasTemp = disciplinas;
     for (let i = 0; i < disciplinasTemp.length; i++) {
-      if (disciplinasTemp[i].id === id) {
+      if (disciplinasTemp[i]._id === id) {
         disciplinasTemp.splice(i, 1);
       }
     }
@@ -34,7 +34,7 @@ export default function List() {
       return disciplinas.map((disciplina, i) => {
         return (
           <TableRow
-            id={disciplina.id}
+            _id={disciplina._id}
             nome={disciplina.nome}
             curso={disciplina.curso}
             capacidade={disciplina.capacidade}
