@@ -12,6 +12,8 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Fornecer Permissões para acessar os métodos listados abaixo.
 app.use(function(request, response, next) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header(
