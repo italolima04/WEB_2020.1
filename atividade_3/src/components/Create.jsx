@@ -14,7 +14,7 @@ export default function Create() {
     axios
       .post("http://localhost:3002/disciplinas/register", novaDisciplina)
       .then((response) => {
-        alert(`${response.data._id + 1}º Disciplina  Inserida com Sucesso!`);
+        alert(`Disciplina de ID ${response.data._id} Inserida com Sucesso!`);
       })
       .catch((error) => {
         alert("Aconteceu algo Inesperado e a Disciplina não foi Criada :/ ");
