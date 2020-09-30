@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import FirebaseService from "../services/FirebaseService";
+import FirebaseContext from "../utils/FirebaseContext";
 
 const EditPage = () => {
   const { id } = useParams();
-  console.log(`ID Recebido: ${id}`);
   return (
     <>
-      <FirebaseService.Consumer>
+      <FirebaseContext.Consumer>
         {(firebase) => <Edit firebase={firebase} id={id} />}
-      </FirebaseService.Consumer>
+      </FirebaseContext.Consumer>
     </>
   );
 };
@@ -19,6 +19,8 @@ function Edit(props) {
   const [nome, setNome] = useState("");
   const [curso, setCurso] = useState("");
   const [capacidade, setCapacidade] = useState("");
+
+  const { id } = useParams();
 
   useEffect(() => {
     FirebaseService.retrieve(
@@ -30,7 +32,7 @@ function Edit(props) {
           setCapacidade(disciplina.capacidade);
         }
       },
-      props.id
+      id
     );
   }, []);
 
@@ -41,13 +43,12 @@ function Edit(props) {
       curso: curso,
       capacidade: capacidade,
     };
-    console.log(disciplinaAtualizada);
     FirebaseService.edit(
       props.firebase.getFirestore(),
       (mensagem) => {
         alert(mensagem);
       },
-      props.id,
+      id,
       disciplinaAtualizada
     );
   }

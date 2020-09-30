@@ -67,7 +67,7 @@ export default class FirebaseService {
                 capacidade: disciplina.capacidade,
             })
             .then(() => {
-                callback("Disciplina Edita com Sucesso.");
+                callback("Disciplina Editada com Sucesso.");
                 callback(disciplina);
             })
             .catch((error) => {

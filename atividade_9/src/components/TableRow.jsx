@@ -5,14 +5,16 @@ import FirebaseService from "../services/FirebaseService";
 
 export default function TableRow(props) {
   function apagar(id, nome) {
+    console.log(id);
+    console.log(props.nome);
     let res = window.confirm(
-      `Tem Certeza que Deseja Apagar a Disciplina ${nome}`
+      `Tem Certeza que Deseja Apagar a Disciplina ${nome} ?`
     );
     if (res) {
       FirebaseService.delete(
         props.firebase.getFirestore(),
         (mensagem) => {
-          console.log(mensagem);
+          alert(mensagem);
         },
         id
       );
@@ -39,7 +41,7 @@ export default function TableRow(props) {
       </td>
       <td style={{ textAlign: "center" }}>
         <button
-          onClick={apagar}
+          onClick={() => apagar(props._id, props.nome)}
           className="btn btn-primary"
           style={{
             backgroundColor: "#B22222",
