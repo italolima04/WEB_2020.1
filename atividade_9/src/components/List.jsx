@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import TableRow from "./TableRow";
 
-import Firebase from "../utils/Firebase";
 import FirebaseContext from "../utils/FirebaseContext";
 import FirebaseService from "../services/FirebaseService";
 
@@ -13,12 +12,11 @@ const ListPage = () => {
       <FirebaseContext.Consumer>
         {(firebase) => <List firebase={firebase} />}
       </FirebaseContext.Consumer>
-      ;
     </>
   );
 };
 
-export default function List(props) {
+function List(props) {
   const [disciplinas, setDisciplinas] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -42,6 +40,7 @@ export default function List(props) {
 
   function montarTabela() {
     if (!disciplinas) return;
+    if (loading) return loadingSpinner();
     else {
       return disciplinas.map((disciplina, i) => {
         return (
@@ -98,3 +97,5 @@ export default function List(props) {
     </div>
   );
 }
+
+export default ListPage;

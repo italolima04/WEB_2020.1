@@ -1,50 +1,55 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function Edit() {
+import FirebaseService from "../services/FirebaseService";
+
+const EditPage = () => {
+  const { id } = useParams();
+  console.log(`ID Recebido: ${id}`);
+  return (
+    <>
+      <FirebaseService.Consumer>
+        {(firebase) => <Edit firebase={firebase} id={id} />}
+      </FirebaseService.Consumer>
+    </>
+  );
+};
+
+function Edit(props) {
   const [nome, setNome] = useState("");
   const [curso, setCurso] = useState("");
   const [capacidade, setCapacidade] = useState("");
 
-  const { id } = useParams();
-  const history = useHistory();
-  console.log(`ID Recebido: ${id}`);
-
   useEffect(() => {
-    axios
-      .get(`http://localhost:3002/disciplinas/retrieve/${id}`)
-      .then((response) => {
-        setNome(response.data.nome);
-        setCurso(response.data.curso);
-        setCapacidade(response.data.capacidade);
-      })
-      .catch((error) => {
-        alert("Algo Inesperado Aconteceu :/ ");
-        console.log(error);
-      });
+    FirebaseService.retrieve(
+      props.firebase.getFirestore(),
+      (disciplina) => {
+        if (disciplina) {
+          setNome(disciplina.nome);
+          setCurso(disciplina.curso);
+          setCapacidade(disciplina.capacidade);
+        }
+      },
+      props.id
+    );
   }, []);
 
   function submitForm(event) {
     event.preventDefault();
-
     const disciplinaAtualizada = {
       nome: nome,
       curso: curso,
       capacidade: capacidade,
     };
-
-    axios
-      .put(
-        `http://localhost:3002/disciplinas/update/${id}`,
-        disciplinaAtualizada
-      )
-      .then(() => {
-        history.push("/list");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(disciplinaAtualizada);
+    FirebaseService.edit(
+      props.firebase.getFirestore(),
+      (mensagem) => {
+        alert(mensagem);
+      },
+      props.id,
+      disciplinaAtualizada
+    );
   }
 
   return (
@@ -92,3 +97,5 @@ export default function Edit() {
     </div>
   );
 }
+
+export default EditPage;

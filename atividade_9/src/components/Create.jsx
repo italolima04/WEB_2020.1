@@ -1,26 +1,32 @@
 import React, { useState } from "react";
-import axios from "axios";
+import FirebaseContext from "../utils/FirebaseContext";
+import FirebaseService from "../services/FirebaseService";
 
-export default function Create() {
+const CreatePage = () => {
+  return (
+    <>
+      <FirebaseContext.Consumer>
+        {(firebase) => <Create firebase={firebase} />}
+      </FirebaseContext.Consumer>
+    </>
+  );
+};
+
+function Create(props) {
   const [nome, setNome] = useState("");
   const [curso, setCurso] = useState("");
   const [capacidade, setCapacidade] = useState("");
 
   function submitForm(e) {
     e.preventDefault();
-
     const novaDisciplina = { nome: nome, curso: curso, capacidade: capacidade };
-
-    axios
-      .post("http://localhost:3002/disciplinas/register", novaDisciplina)
-      .then((response) => {
-        alert(`Disciplina de ID ${response.data._id} Inserida com Sucesso!`);
-      })
-      .catch((error) => {
-        alert("Aconteceu algo Inesperado e a Disciplina não foi Criada :/ ");
-        console.log(error);
-      });
-
+    FirebaseService.create(
+      props.firebase.getFirestore(),
+      (mensagem) => {
+        alert(mensagem);
+      },
+      novaDisciplina
+    );
     setNome("");
     setCurso("");
     setCapacidade("");
@@ -71,3 +77,5 @@ export default function Create() {
     </div>
   );
 }
+
+export default CreatePage;
