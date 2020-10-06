@@ -1,8 +1,8 @@
 export default {
-    setNumberOne(numberOne) {
-        return { type: "CHANGE_NUMBER_ONE", payload: Number };
+    changeNumberOne(numberOne) {
+        return { type: "CHANGE_NUMBER_ONE", payload: numberOne };
     },
-    setNumberTwo(numberTwo) {
-        return { type: "CHANGE_NUMBER_TWO", payload: Number };
+    changeNumberTwo(numberTwo) {
+        return { type: "CHANGE_NUMBER_TWO", payload: numberTwo };
     },
 };

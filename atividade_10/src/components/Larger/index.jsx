@@ -5,17 +5,18 @@ import { connect } from "react-redux";
 import changeNumberOne from "../../actions/actions";
 import changeNumberTwo from "../../actions/actions";
 
-function Multiply(props) {
+function Larger(props) {
   return (
     <div>
-      <h2>Multiplicação: {props.resultado}</h2>
+      <h2>Maior: {props.resultado}</h2>
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    resultado: state.numberOne * state.numberTwo,
+    resultado:
+      state.numberOne > state.numberTwo ? state.numberOne : state.numberTwo,
   };
 }
 
@@ -32,4 +33,4 @@ function mapActionCreatorToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapActionCreatorToProps)(Multiply);
+export default connect(mapStateToProps, mapActionCreatorToProps)(Larger);

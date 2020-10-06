@@ -1,4 +1,10 @@
 // Estado geral da minha aplicação.
 import { createStore } from "redux";
 
-export default createStore(reducers);
+import reducer from "../reducers/reducer";
+
+function storeConfig() {
+    return createStore(reducer);
+}
+
+export default storeConfig;
