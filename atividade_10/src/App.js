@@ -1,17 +1,24 @@
 import React from "react";
 import "./App.css";
 
-import Larger from "./components/Larger/index";
-import Multiply from "./components/Multiply";
 import Sum from "./components/Sum";
+import Multiply from "./components/Multiply";
+import Larger from "./components/Larger";
+import Display from "./components/Display";
 
-function App(props) {
+import Calculadora from "./assets/calculadora.svg";
+
+function App() {
   return (
     <div className="App">
-      <h1 style={{ background: "green" }}>Redux Calc</h1>
-      <Multiply />
-      <Sum />
-      <Larger />
+      <h1>Redux Calc</h1>
+      <img src={Calculadora} height={70} alt="Calculadora" />
+      <Display />
+      <div className="result">
+        <Sum />
+        <Multiply />
+        <Larger />
+      </div>
     </div>
   );
 }

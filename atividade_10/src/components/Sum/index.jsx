@@ -1,26 +1,30 @@
 import React from "react";
 
-import { connect } from "react-redux";
+import { Card } from "react-bootstrap";
 
-import actions from "../../actions/actions";
+import { connect } from "react-redux";
 
 function Sum(props) {
   return (
     <div>
-      <input
-        type="number"
-        onChange={(e) => {
-          props.setNumberOne(e.target.value);
+      <Card
+        style={{
+          background: "#fff",
+          height: "110px",
+          width: "280px",
+          margin: "25px",
+          border: "2px groove black",
+
+          borderRadius: "7px",
         }}
-      />
-      <br /> <br />
-      <input
-        type="number"
-        onChange={(e) => {
-          props.setNumberTwo(e.target.value);
-        }}
-      />
-      <h2>Soma: {props.resultado} </h2>
+      >
+        <Card.Header as="h2">Soma</Card.Header>
+        <Card.Body>
+          <Card.Text>
+            <h2>{props.resultado}</h2>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
@@ -31,17 +35,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapActionCreatorToProps(dispatch) {
-  return {
-    setNumberOne(numberOne) {
-      const action = actions.changeNumberOne(numberOne);
-      dispatch(action);
-    },
-    setNumberTwo(numberTwo) {
-      const action = actions.changeNumberTwo(numberTwo);
-      dispatch(action);
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapActionCreatorToProps)(Sum);
+export default connect(mapStateToProps)(Sum);

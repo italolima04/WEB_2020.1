@@ -1,14 +1,29 @@
 import React from "react";
 
-import { connect } from "react-redux";
+import { Card } from "react-bootstrap";
 
-import changeNumberOne from "../../actions/actions";
-import changeNumberTwo from "../../actions/actions";
+import { connect } from "react-redux";
 
 function Multiply(props) {
   return (
     <div>
-      <h2>Multiplicação: {props.resultado}</h2>
+      <Card
+        style={{
+          background: "#fff",
+          height: "110px",
+          width: "280px",
+          margin: "25px",
+          border: "2px groove black",
+          borderRadius: "7px",
+        }}
+      >
+        <Card.Header as="h2">Multiplicação</Card.Header>
+        <Card.Body>
+          <Card.Text>
+            <h2>{props.resultado}</h2>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
@@ -19,17 +34,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapActionCreatorToProps(dispatch) {
-  return {
-    setNumberOne(number) {
-      const action = changeNumberOne(number);
-      dispatch(action);
-    },
-    setNumberTwo(number) {
-      const action = changeNumberTwo(number);
-      dispatch(action);
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapActionCreatorToProps)(Multiply);
+export default connect(mapStateToProps)(Multiply);

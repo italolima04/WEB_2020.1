@@ -1,14 +1,29 @@
 import React from "react";
 
-import { connect } from "react-redux";
+import { Card } from "react-bootstrap";
 
-import changeNumberOne from "../../actions/actions";
-import changeNumberTwo from "../../actions/actions";
+import { connect } from "react-redux";
 
 function Larger(props) {
   return (
     <div>
-      <h2>Maior: {props.resultado}</h2>
+      <Card
+        style={{
+          background: "#fff",
+          height: "110px",
+          width: "280px",
+          margin: "25px",
+          border: "2px groove black",
+          borderRadius: "7px",
+        }}
+      >
+        <Card.Header as="h2">Maior</Card.Header>
+        <Card.Body>
+          <Card.Text>
+            <h2>{props.resultado}</h2>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
@@ -16,21 +31,10 @@ function Larger(props) {
 function mapStateToProps(state) {
   return {
     resultado:
-      state.numberOne > state.numberTwo ? state.numberOne : state.numberTwo,
+      Number(state.numberOne) > Number(state.numberTwo)
+        ? Number(state.numberOne)
+        : Number(state.numberTwo),
   };
 }
 
-function mapActionCreatorToProps(dispatch) {
-  return {
-    setNumberOne(number) {
-      const action = changeNumberOne(number);
-      dispatch(action);
-    },
-    setNumberTwo(number) {
-      const action = changeNumberTwo(number);
-      dispatch(action);
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapActionCreatorToProps)(Larger);
+export default connect(mapStateToProps)(Larger);
