@@ -14,7 +14,6 @@ function Sum(props) {
           width: "280px",
           margin: "25px",
           border: "2px groove black",
-
           borderRadius: "7px",
         }}
       >
