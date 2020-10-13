@@ -4,7 +4,7 @@ import {
     SIGNIN_SUCESS,
     SIGNIN_ERROR,
     SIGNOUT_SUCESS,
-    SUGNOUT_ERROR,
+    SIGNOUT_ERROR,
 } from "../actions/actions";
 
 const INITIAL_STATE = {
@@ -42,7 +42,7 @@ export default function(state = INITIAL_STATE, action) {
                 user: null,
                 authMsg: action.payload.authMessage,
             };
-        case SUGNOUT_ERROR:
+        case SIGNOUT_ERROR:
             return {
                 ...state,
                 authMsg: action.payload.authMessage,

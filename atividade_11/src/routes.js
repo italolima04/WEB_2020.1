@@ -1,12 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Create from "./components/Create";
 import Edit from "./components/Edit";
 import Home from "./components/Home";
 import List from "./components/List";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
 
-export default function Routes() {
+function Routes(props) {
   return (
     <Router>
       <div className="container">
@@ -16,6 +19,16 @@ export default function Routes() {
           </Link>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link to={"/signup"} className="nav-link">
+                  Sign-Up
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/signin"} className="nav-link">
+                  Sign-In
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link to={"/"} className="nav-link">
                   Home
@@ -44,8 +57,11 @@ export default function Routes() {
         >
           Projeto CRUD
         </h2>
+        <h5>{props.user}</h5>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/signin" component={Signin} />
           <Route path="/create" component={Create} />
           <Route path="/edit/:id" component={Edit} children={<Edit />} />
           <Route path="/list" component={List} />
@@ -54,3 +70,11 @@ export default function Routes() {
     </Router>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    user: state.authReducer.user,
+  };
+}
+
+export default connect(mapStateToProps)(Routes);
