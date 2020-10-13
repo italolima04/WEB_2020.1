@@ -5,6 +5,8 @@ import {
     SIGNIN_ERROR,
     SIGNOUT_SUCESS,
     SIGNOUT_ERROR,
+    RESET_AUTH_MESSAGE,
+    EMAIL_NOT_VERIFIED,
 } from "../actions/actions";
 
 import Firebase from "../../utils/Firebase";
@@ -18,12 +20,18 @@ export const signup = (email, password, callback) => {
                 .createUserWithEmailAndPassword(email, password)
                 .then(() => {
                     Firebase.auth().onAuthStateChanged((user) => {
+                        user.sendEmailVerification();
+                    });
+                })
+                .then(() => {
+                    Firebase.auth().onAuthStateChanged((user) => {
                         if (user) {
                             dispatch({
                                 type: SIGNUP_SUCESS,
                                 payload: {
-                                    authMessage: "Cadastro Realizado com Sucesso.",
+                                    authMessage: "Cadastro Realizado com Sucesso! Verifique seu E-mail.",
                                     userMail: user.email,
+                                    verified: false,
                                 },
                             });
                             callback();
@@ -64,6 +72,17 @@ export const signin = (email, password, callback) => {
         try {
             Firebase.auth()
                 .sigInWithEmailAndPassword(email, password)
+                .then((data) => {
+                    if (!data.user.emailVerified) {
+                        dispatch({
+                            type: EMAIL_NOT_VERIFIED,
+                            payload: {
+                                authMessage: `E-mail não verificado. Verifique sua caixa de entrada.`,
+                                verified: false,
+                            },
+                        });
+                    }
+                })
                 .then((data) => {
                     dispatch({
                         type: SIGNIN_SUCESS,

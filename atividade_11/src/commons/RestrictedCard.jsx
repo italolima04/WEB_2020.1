@@ -10,6 +10,9 @@ function RestrictedCard(props) {
     if (props.firebaseAuth.isLoaded && props.firebaseAuth.isEmpty) {
       props.history.push("/signin");
     }
+    if (!props.emailVerified) {
+      props.history.push("/signin");
+    }
   });
 
   return <Card title={props.title}>{props.children}</Card>;
@@ -18,6 +21,7 @@ function RestrictedCard(props) {
 function mapStateToProps(state) {
   return {
     firebaseAuth: state.firebaseReducer.auth,
+    emailVerified: state.authReducer.verified,
   };
 }
 

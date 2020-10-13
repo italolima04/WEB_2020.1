@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import List from "./components/List";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
+import Signout from "./components/Signout";
 
 function Routes(props) {
   return (
@@ -20,6 +21,11 @@ function Routes(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
+                <Link to={"/"} className="nav-link">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to={"/signup"} className="nav-link">
                   Sign-Up
                 </Link>
@@ -30,8 +36,8 @@ function Routes(props) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/"} className="nav-link">
-                  Home
+                <Link to={"/signout"} className="nav-link">
+                  Sign-Out
                 </Link>
               </li>
               <li className="nav-item">
@@ -61,6 +67,7 @@ function Routes(props) {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/signup" component={Signup} />
+          <Route path="/signout" component={Signout} />
           <Route path="/signin" component={Signin} />
           <Route path="/create" component={Create} />
           <Route path="/edit/:id" component={Edit} children={<Edit />} />

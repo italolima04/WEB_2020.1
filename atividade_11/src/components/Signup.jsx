@@ -21,8 +21,11 @@ function Signup(props) {
     props.mySignup(login, password, () => {
       isMounted && setLoading(false);
     });
-    setLogin("");
-    setPassword("");
+    setLogin(login);
+    setPassword(password);
+    {
+      alert("Cadastro Realizado com Sucesso.");
+    }
   }
 
   function renderButton() {
@@ -38,13 +41,77 @@ function Signup(props) {
         </button>
       );
     }
-
-    return (
-      <input type="submit" value="Cadastrar" className="btn btn-primary" />
-    );
+    return;
   }
 
-  return <div></div>;
+  function renderMessage() {
+    if (props.userMsg) {
+      const msgType = props.userMsg.includes("Err")
+        ? "alert-danger"
+        : "alert-info";
+      return (
+        <div className={`alert ${msgType}`} style={{ marginTop: "10px" }}>
+          {props.userMsg}
+        </div>
+      );
+    }
+    return (
+      <input
+        type="submit"
+        value="Realizar Cadastro"
+        className="btn btn-primary"
+      />
+    );
+  }
+  return (
+    <Card title={<h3>Realizar Cadastro</h3>}>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label>
+            <strong> Login </strong>
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            value={login}
+            onChange={(e) => {
+              setLogin(e.target.value);
+            }}
+          />
+        </div>
+        <div className="form-group">
+          <label>
+            <strong>Password</strong>
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </div>
+        {renderButton()}
+      </form>
+      {renderMessage()}
+    </Card>
+  );
 }
 
-export default Signup;
+function mapStateToProps(state) {
+  return {
+    userMsg: state.authReducer.authMsg,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    mySignup(login, password, callback) {
+      const action = signup(login, password, callback);
+      dispatch(action);
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

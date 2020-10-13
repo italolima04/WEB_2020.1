@@ -5,11 +5,14 @@ import {
     SIGNIN_ERROR,
     SIGNOUT_SUCESS,
     SIGNOUT_ERROR,
+    RESET_AUTH_MESSAGE,
+    EMAIL_NOT_VERIFIED,
 } from "../actions/actions";
 
 const INITIAL_STATE = {
     authMsg: null,
     user: "",
+    verified: false,
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -46,6 +49,17 @@ export default function(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 authMsg: action.payload.authMessage,
+            };
+        case RESET_AUTH_MESSAGE:
+            return {
+                ...state,
+                authMsg: null,
+            };
+        case EMAIL_NOT_VERIFIED:
+            return {
+                ...state,
+                authMsg: action.payload.authMessage,
+                verified: action.payload.verified,
             };
         default:
             return state;
