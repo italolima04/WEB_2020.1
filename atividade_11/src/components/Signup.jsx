@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Card from "../commons/Card";
-
+import "firebase/auth";
 import { connect } from "react-redux";
 import { signup } from "../store/actions/authActionCreator";
 import { useEffect } from "react";
@@ -8,11 +8,11 @@ import { useEffect } from "react";
 function Signup(props) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [isMounted, setisMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setisMounted(true);
+    setIsMounted(true);
   });
 
   function onSubmit(e) {
@@ -21,11 +21,8 @@ function Signup(props) {
     props.mySignup(login, password, () => {
       isMounted && setLoading(false);
     });
-    setLogin(login);
-    setPassword(password);
-    {
-      alert("Cadastro Realizado com Sucesso.");
-    }
+    setLogin("");
+    setPassword("");
   }
 
   function renderButton() {
@@ -41,7 +38,13 @@ function Signup(props) {
         </button>
       );
     }
-    return;
+    return (
+      <input
+        type="submit"
+        value="Realizar Cadastro"
+        className="btn btn-primary"
+      />
+    );
   }
 
   function renderMessage() {
@@ -55,13 +58,7 @@ function Signup(props) {
         </div>
       );
     }
-    return (
-      <input
-        type="submit"
-        value="Realizar Cadastro"
-        className="btn btn-primary"
-      />
-    );
+    return;
   }
   return (
     <Card title={<h3>Realizar Cadastro</h3>}>

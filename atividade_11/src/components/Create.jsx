@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import FirebaseContext from "../utils/FirebaseContext";
+import { connect } from "react-redux";
 import FirebaseService from "../services/FirebaseService";
+import firebase from "../utils/Firebase";
 
-const CreatePage = () => {
-  return (
-    <>
-      <FirebaseContext.Consumer>
-        {(firebase) => <Create firebase={firebase} />}
-      </FirebaseContext.Consumer>
-    </>
-  );
-};
+import { useHistory } from "react-router-dom";
 
 function Create(props) {
+  const history = useHistory();
+  if (props.permitted === false) {
+    history.push("/signin");
+  }
+
   const [nome, setNome] = useState("");
   const [curso, setCurso] = useState("");
   const [capacidade, setCapacidade] = useState("");
@@ -21,7 +19,7 @@ function Create(props) {
     e.preventDefault();
     const novaDisciplina = { nome: nome, curso: curso, capacidade: capacidade };
     FirebaseService.create(
-      props.firebase.getFirestore(),
+      firebase.firestore(),
       (mensagem) => {
         alert(mensagem);
       },
@@ -78,4 +76,10 @@ function Create(props) {
   );
 }
 
-export default CreatePage;
+function mapStateToProps(state) {
+  return {
+    permitted: state.authReducer.verified,
+  };
+}
+
+export default connect(mapStateToProps, null)(Create);

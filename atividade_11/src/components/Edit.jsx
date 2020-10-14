@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
+import "firebase/firestore";
+import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
+import firebase from "../utils/Firebase";
 import FirebaseService from "../services/FirebaseService";
-import FirebaseContext from "../utils/FirebaseContext";
-
-const EditPage = () => {
-  const { id } = useParams();
-  return (
-    <>
-      <FirebaseContext.Consumer>
-        {(firebase) => <Edit firebase={firebase} id={id} />}
-      </FirebaseContext.Consumer>
-    </>
-  );
-};
 
 function Edit(props) {
+  const history = useHistory();
+  if (props.permitted === false) {
+    history.push("/signin");
+  }
+
   const [nome, setNome] = useState("");
   const [curso, setCurso] = useState("");
   const [capacidade, setCapacidade] = useState("");
@@ -24,7 +21,7 @@ function Edit(props) {
 
   useEffect(() => {
     FirebaseService.retrieve(
-      props.firebase.getFirestore(),
+      firebase.firestore(),
       (disciplina) => {
         if (disciplina) {
           setNome(disciplina.nome);
@@ -44,7 +41,7 @@ function Edit(props) {
       capacidade: capacidade,
     };
     FirebaseService.edit(
-      props.firebase.getFirestore(),
+      firebase.firestore(),
       (mensagem) => {
         alert(mensagem);
       },
@@ -99,4 +96,10 @@ function Edit(props) {
   );
 }
 
-export default EditPage;
+function mapStateToProps(state) {
+  return {
+    permitted: state.authReducer.verified,
+  };
+}
+
+export default connect(mapStateToProps, null)(Edit);

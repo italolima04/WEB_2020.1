@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
+import "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import firebase from "../utils/Firebase";
 
 import TableRow from "./TableRow";
 
-import FirebaseContext from "../utils/FirebaseContext";
 import FirebaseService from "../services/FirebaseService";
-
-const ListPage = () => {
-  return (
-    <>
-      <FirebaseContext.Consumer>
-        {(firebase) => <List firebase={firebase} />}
-      </FirebaseContext.Consumer>
-    </>
-  );
-};
 
 function List(props) {
   const [disciplinas, setDisciplinas] = useState([]);
@@ -22,7 +14,7 @@ function List(props) {
 
   useEffect(() => {
     setLoading(true);
-    FirebaseService.list(props.firebase.getFirestore(), (disciplinas) => {
+    FirebaseService.list(firebase.firestore(), (disciplinas) => {
       setDisciplinas(disciplinas);
       setLoading(false);
     });
@@ -98,4 +90,4 @@ function List(props) {
   );
 }
 
-export default ListPage;
+export default List;

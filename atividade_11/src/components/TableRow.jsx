@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import FirebaseService from "../services/FirebaseService";
+import firebase from "../utils/Firebase";
 
 export default function TableRow(props) {
   function apagar(id, nome) {
@@ -12,7 +13,7 @@ export default function TableRow(props) {
     );
     if (res) {
       FirebaseService.delete(
-        props.firebase.getFirestore(),
+        firebase.firestore(),
         (mensagem) => {
           alert(mensagem);
         },

@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../commons/RestrictedCard";
+import "firebase/auth";
 
 import { connect } from "react-redux";
 import { signout } from "../store/actions/authActionCreator";

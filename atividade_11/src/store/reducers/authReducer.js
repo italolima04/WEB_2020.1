@@ -22,6 +22,7 @@ export default function(state = INITIAL_STATE, action) {
                 ...state,
                 authMsg: action.payload.authMessage,
                 user: action.payload.userMail,
+                verified: action.payload.verified,
             };
         case SIGNUP_ERROR:
             return {
@@ -33,6 +34,7 @@ export default function(state = INITIAL_STATE, action) {
                 ...state,
                 authMsg: action.payload.authMessage,
                 user: action.payload.userMail,
+                verified: action.payload.verified,
             };
         case SIGNIN_ERROR:
             return {
@@ -44,6 +46,7 @@ export default function(state = INITIAL_STATE, action) {
                 ...state,
                 user: null,
                 authMsg: action.payload.authMessage,
+                verified: action.payload.verified,
             };
         case SIGNOUT_ERROR:
             return {

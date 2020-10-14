@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Card from "../commons/Card";
-
 import { connect } from "react-redux";
 import { signin } from "../store/actions/authActionCreator";
 
@@ -49,8 +48,8 @@ function Signin(props) {
       setLoading(false);
     });
 
-    setLogin(login);
-    setPassword(password);
+    setLogin("");
+    setPassword("");
   }
 
   return (

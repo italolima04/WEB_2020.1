@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 
-import reducers from "./reducers";
+import reducer from "./reducers";
 import firebase from "../utils/Firebase";
 
 function saveToLocalStorage(state) {
@@ -20,25 +20,21 @@ function loadFromLocalStorage() {
         return JSON.parse(serializedState);
     } catch (error) {
         alert(`Ocorreu o Erro: ${error}`);
+        return undefined;
     }
 }
 
 const persistedState = loadFromLocalStorage();
 
-const store = createStore(
-    reducers,
-    persistedState,
-    applyMiddleware(reduxThunk)
-);
+const store = createStore(reducer, persistedState, applyMiddleware(reduxThunk));
 
+store.subscribe(() => {
+    saveToLocalStorage(store.getState());
+});
 const rrfProps = {
     firebase,
     config: {},
     dispatch: store.dispatch,
 };
-
-store.subscribe(() => {
-    saveToLocalStorage(store.getState());
-});
 
 export { store, rrfProps };

@@ -9,22 +9,23 @@ import {
     EMAIL_NOT_VERIFIED,
 } from "../actions/actions";
 
-import Firebase from "../../utils/Firebase";
+import firebase from "../../utils/Firebase";
 
 // 3 Actions: Logar, Sair e Cadastrar-se.
 
 export const signup = (email, password, callback) => {
     return (dispatch) => {
         try {
-            Firebase.auth()
+            firebase
+                .auth()
                 .createUserWithEmailAndPassword(email, password)
                 .then(() => {
-                    Firebase.auth().onAuthStateChanged((user) => {
+                    firebase.auth().onAuthStateChanged((user) => {
                         user.sendEmailVerification();
                     });
                 })
                 .then(() => {
-                    Firebase.auth().onAuthStateChanged((user) => {
+                    firebase.auth().onAuthStateChanged((user) => {
                         if (user) {
                             dispatch({
                                 type: SIGNUP_SUCESS,
@@ -70,8 +71,9 @@ export const signup = (email, password, callback) => {
 export const signin = (email, password, callback) => {
     return (dispatch) => {
         try {
-            Firebase.auth()
-                .sigInWithEmailAndPassword(email, password)
+            firebase
+                .auth()
+                .signInWithEmailAndPassword(email, password)
                 .then((data) => {
                     if (!data.user.emailVerified) {
                         dispatch({
@@ -81,16 +83,16 @@ export const signin = (email, password, callback) => {
                                 verified: false,
                             },
                         });
+                    } else {
+                        dispatch({
+                            type: SIGNIN_SUCESS,
+                            payload: {
+                                authMessage: "Login Efetuado com Sucesso.",
+                                userMail: data.user.email,
+                                verified: true,
+                            },
+                        });
                     }
-                })
-                .then((data) => {
-                    dispatch({
-                        type: SIGNIN_SUCESS,
-                        payload: {
-                            authMessage: "Login Efetuado com Sucesso.",
-                            userMail: data.user.email,
-                        },
-                    });
                     callback();
                 })
                 .catch((error) => {
@@ -117,13 +119,15 @@ export const signin = (email, password, callback) => {
 export const signout = (callback) => {
     return (dispatch) => {
         try {
-            Firebase.auth()
+            firebase
+                .auth()
                 .signOut()
                 .then(() => {
                     dispatch({
                         type: SIGNOUT_SUCESS,
                         payload: {
                             authMessage: "Logout Efetuado com Sucesso.",
+                            verified: false,
                         },
                     });
                     callback();
@@ -146,5 +150,11 @@ export const signout = (callback) => {
             });
             callback();
         }
+    };
+};
+
+export const resetAuthMessage = () => {
+    return {
+        type: RESET_AUTH_MESSAGE,
     };
 };
