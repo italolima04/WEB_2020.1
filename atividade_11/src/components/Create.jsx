@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -9,13 +9,10 @@ import firebase from "../utils/Firebase";
 
 function Create(props) {
   const history = useHistory();
+
   if (props.permitted === false) {
     history.push("/signin");
   }
-
-  const [nome, setNome] = useState("");
-  const [curso, setCurso] = useState("");
-  const [capacidade, setCapacidade] = useState("");
 
   return (
     <Formik
@@ -48,10 +45,6 @@ function Create(props) {
           },
           novaDisciplina
         );
-        setNome("");
-        setCurso("");
-        setCapacidade("");
-
         history.push("/list");
       }}
     >

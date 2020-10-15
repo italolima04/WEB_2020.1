@@ -11,6 +11,7 @@ import FirebaseService from "../services/FirebaseService";
 
 function Edit(props) {
   const history = useHistory();
+
   if (props.permitted === false) {
     history.push("/signin");
   }
@@ -33,9 +34,11 @@ function Edit(props) {
       },
       id
     );
-  }, []);
+  }, [id]);
+
   return (
     <Formik
+      enableReinitialize
       initialValues={{
         nome,
         curso,
